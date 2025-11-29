@@ -353,3 +353,13 @@ export const getAllMembers = async (params = {}, maxRetries = 3) => {
 ```
 
 ## Task 3: Rate Limiter (Python)  
+### 1. Searches Performed (exact queries + URLs)
+
+**Query**: write rate limiter using python:
+
+- https://stackoverflow.com/questions/40748687/python-api-rate-limiting-how-to-limit-api-calls-globally
+
+https://www.gauthmath.com/solution/1841485119235121/Question-1-Language-Python-3-You-are-building-a-rate-limiter-that-controls-how-m
+
+https://medium.com/@choudharys710/lld-machine-coding-w-implementation-rate-limiter-34f87e74120f
+https://levelup.gitconnected.com/what-is-rate-limiting-and-how-to-implement-it-from-algorithms-to-system-architecture-c4ed37adefe9
