@@ -1,0 +1,6 @@
+fastapi
+starlette
+redis
+fastapi-ratelimiter
+uvicorn
+setuptools

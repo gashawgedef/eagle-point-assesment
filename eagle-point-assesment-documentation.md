@@ -364,3 +364,78 @@ export const getAllMembers = async (params = {}, maxRetries = 3) => {
 - https://medium.com/@choudharys710/lld-machine-coding-w-implementation-rate-limiter-34f87e74120f
 
 - https://levelup.gitconnected.com/what-is-rate-limiting-and-how-to-implement-it-from-algorithms-to-system-architecture-c4ed37adefe9
+
+- https://fastapi-ratelimit.readthedocs.io/en/latest/
+
+
+```
+import aioredis
+from fastapi import Depends, FastAPI
+from starlette.responses import JSONResponse
+
+from fastapi_ratelimiter import RateLimited, RedisDependencyMarker
+from fastapi_ratelimiter.strategies import BucketingRateLimitStrategy
+
+app = FastAPI()
+app.dependency_overrides[RedisDependencyMarker] = aioredis.from_url("redis://localhost")
+
+
+@app.get(
+    "/some_expensive_call", response_class=JSONResponse,
+    dependencies=[
+        Depends(RateLimited(BucketingRateLimitStrategy(rate="10/60s")))
+    ]
+)
+async def handle_test_endpoint():
+    return {"hello": "world"}
+
+```
+
+**Why you choose this approach?**
+
+This code is fully async, compatible with FastAPI.
+
+It can apply different rate limits per endpoint or user.
+
+Reusable Redis connection across multiple endpoints.
+
+FastAPI endpoint will return 429 Too Many Reque
+
+**Steps to Implement Task 3**
+
+I have esearched Python rate-limiter libraries and FastAPI-specific implementations in above attached links.
+
+I have tested  `aioredis` first, but encountered compatibility issues with `Python 3.12` versions.
+I switched to redis.asyncio and updated dependency injection for fastapi-ratelimiter.
+
+I configured BucketingRateLimitStrategy(rate="10/60s") to enforce 10 requests per 60 seconds.
+
+```
+
+from redis.asyncio import Redis
+from fastapi import Depends, FastAPI
+from starlette.responses import JSONResponse
+
+from fastapi_ratelimiter import RateLimited, RedisDependencyMarker
+from fastapi_ratelimiter.strategies import BucketingRateLimitStrategy
+
+app = FastAPI()
+
+# Create async Redis connection
+redis = Redis.from_url("redis://localhost", decode_responses=True)
+
+# Register redis instance in dependency overrides
+app.dependency_overrides[RedisDependencyMarker] = lambda: redis
+
+
+@app.get(
+    "/some_expensive_call",
+    response_class=JSONResponse,
+    dependencies=[
+        Depends(RateLimited(BucketingRateLimitStrategy(rate="10/60s")))
+    ],
+)
+async def handle_test_endpoint():
+    return {"hello": "world"}
+
+```
