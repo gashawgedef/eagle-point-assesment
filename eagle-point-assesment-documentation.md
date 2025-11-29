@@ -156,7 +156,29 @@ def analyze_word_frequency(words):
 we analyze the `frequency` of each word using the collections.Counter function.
 
 
-**Final Solution for Task 1** 
+## Final Solution for Task 1
+### Thought Process & Decisions 
+- First  used the method  `text.split()`  and  fails on punctuation ("?" counted as a word)
+- when using above `text.split()` method, it requires many for loops which may lead to errors and difficult to read
+- Used regular pattern  `re.findall(r'\w+', text.lower())` to extract clean words
+- Used `collections.Counter` standard library  to get the frequency of word easily.
+- to get  Average length: simple sum of lengths divided by count, round to 2 decimal place is required
+
+**Why You choose this approach?**
+- I considered Time and Space complexity to O(n)
+- The this ext solution should handle panctuations 
+- The code should be easily readable and maintainable
+
+**Steps to Implement Task One**
+
+- 1. Use regex to extract words in text   like `re.findall(r'\w+', text.lower())`
+- 2. count the length of words in text using the method   `len(words)`
+- 3. Calculate total characters a word contains in a text
+- 4. Find average word length and round to 2 decimal places
+- 5. Find The longest word in list of words
+- 6. count frequency of word in text
+- 7. Wrappe  everything in one function and return in the required format
+
 
 **Task 2:** Async Data Fetcher with Retry (JavaScript) 
 **Task 3:** Rate Limiter (Python)  
