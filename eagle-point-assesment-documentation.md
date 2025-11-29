@@ -155,10 +155,9 @@ def analyze_word_frequency(words):
 ```
 we analyze the `frequency` of each word using the collections.Counter function.
 
-```
 
+**Final Solution for Task 1** 
 
-```
 **Task 2:** Async Data Fetcher with Retry (JavaScript) 
 **Task 3:** Rate Limiter (Python)  
 **Date Submitted:** 29 November 2025
