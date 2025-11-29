@@ -171,13 +171,13 @@ we analyze the `frequency` of each word using the collections.Counter function.
 
 **Steps to Implement Task One**
 
-- 1. Use regex to extract words in text   like `re.findall(r'\w+', text.lower())`
-- 2. count the length of words in text using the method   `len(words)`
-- 3. Calculate total characters a word contains in a text
-- 4. Find average word length and round to 2 decimal places
-- 5. Find The longest word in list of words
-- 6. count frequency of word in text
-- 7. Wrappe  everything in one function and return in the required format
+- 1 Use regex to extract words in text   like `re.findall(r'\w+', text.lower())`
+- 2 count the length of words in text using the method   `len(words)`
+- 3 Calculate total characters a word contains in a text
+- 4 Find average word length and round to 2 decimal places
+- 5 Find The longest word in list of words
+- 6 count frequency of word in text
+- 7 Wrappe  everything in one function and return in the required format
 
 
 **Task 2:** Async Data Fetcher with Retry (JavaScript) 
