@@ -1,4 +1,4 @@
 
-#Eagle point Assesment Documentations
+# Eagle point Assesment Documentations
 **Name:**:Gashaw Gedef
 **TASK ONE:**: Smart Text Analyzer
