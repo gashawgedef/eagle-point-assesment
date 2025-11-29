@@ -220,4 +220,136 @@ if __name__ == "__main__":
 ![](images/count4.PNG)
 
 ## Task 2: Async Data Fetcher with Retry (JavaScript) 
+### 1. Searches Performed (exact queries + URLs)
+
+**Query:** "Write a `javascript` function performing  Async Data Fetcher with Retry
+
+https://dev.to/ycmjason/javascript-fetch-retry-upon-failure-3p6g
+https://stackoverflow.com/questions/46175660/fetch-retry-request-on-failure
+https://courses.bigbinaryacademy.com/learn-javascript/exercises-set-11/fetch-data-with-retry/
+https://article.arunangshudas.com/top-6-strategies-for-handling-api-retries-in-node-js-23bbc01fd709
+https://techblitz.dev/question/retry-fetch-request-error-handling-javascript
+
+   I used all above resources to understand retry logic and handling errors.  and I already used my code implemented before and adapted all retry logic as required to this method. 
+
+```
+import Cookies from "js-cookie";
+
+const BASE_URL = 'http://127.0.0.1:8000';
+export const getAllMembers = async (params = {}) => {
+  const token = Cookies.get('sub');
+
+  const { first_name, status, page = 1, per_page = 20 } = params;
+
+  const queryParams = new URLSearchParams();
+
+  if (first_name) {
+    queryParams.append('first_name', first_name);
+  }
+
+  if (status) {
+    queryParams.append('status', status);
+  }
+
+  queryParams.append('page', page);
+  queryParams.append('per_page', per_page);
+
+  const url = `${BASE_URL}/members/?${queryParams.toString()}`;
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch members');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+```
+
+The above  code is  an existing  code I did on my project before a year   and I discovered the following  problems.
+
+- The function doesn't have any retry logic
+- If the network drops for a moment it fails permanently.
+- Any backend error on the servevr causes permanent failure.
+- if retries are added on this function no delay mechanism is implemented.
+
+## 2. Thought Process & Decisions
+
+- I started tarted with basic fetch logic  from my existing code (like in getAllMembers), but  with unreliable network it will fail permanently.
+
+- I considered recursive retry (call function again on error), but loops are better to avoid stack overflow on high retries.
+
+- Added 1-second delay exactly as required using setTimeout in Promise.
+
+- I integrated it into existing code by making a reusable fetchWithRetry, then wrapped one function (RegisterNewMembers) to show usage.
+.
+
+**Why You Chose This Approach?**
+- this function matches  exactly as requirement :async/await, retries, 1s wait, throw after max.
+- Reusable: Can apply to all my fetch calls (getAllMembers, UpdateMember, etc.) without duplicating code.
+- It has time and space complexity of   O(1) space, handles transient errors, clean and readable. 
+
+**Steps to Implement Task 2**
+
+- Researched basic fetch error handling; built simple try-catch but no retry.
+- Added for-loop for retries, tested with bad URL – failed all times.
+- Added setTimeout for 1s delay between tries.
+- Handled response.ok check and json parse.
+- Integrated into my RegisterNewMembers function.
+```
+export const getAllMembers = async (params = {}, maxRetries = 3) => {
+  const token = Cookies.get('sub');
+  const { first_name, status, page = 1, per_page = 20 } = params;
+
+  const queryParams = new URLSearchParams();
+  if (first_name) queryParams.append('first_name', first_name);
+  if (status) queryParams.append('status', status);
+  queryParams.append('page', page);
+  queryParams.append('per_page', per_page);
+
+  const url = `${BASE_URL}/members/?${queryParams.toString()}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      return await response.json(); // Success!
+
+    } catch (error) {
+      console.warn(`Attempt ${attempt}/${maxRetries} failed:`, error.message);
+
+      if (attempt === maxRetries) {
+        throw new Error(`Failed after ${maxRetries} attempts: ${error.message}`);
+      }
+
+      // Wait exactly 1 second before retry
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  }
+};
+```
+
+## Final Solution for Task 2
+
 ## Task 3: Rate Limiter (Python)  
