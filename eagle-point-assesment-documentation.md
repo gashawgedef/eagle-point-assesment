@@ -86,7 +86,21 @@ https://www.geeksforgeeks.org/python/python-average-string-length-in-list/
 https://www.digitalocean.com/community/tutorials/average-of-list-in-python
 https://www.geeksforgeeks.org/python/python-average-string-length-in-list/
 
+to find the Average of length of words in text:
 
+```
+def average_word_length(text):
+    words = text.split()
+    total_length = 0
+    for word in words:
+        total_length += len(word)
+
+    average_length = total_length / len(words)
+    return average_length
+```
+***Output:**
+![](images/count3.PNG)
+From above code the result is `5.66666666667` not in 2 decimal places. 
 **Task 2:** Async Data Fetcher with Retry (JavaScript) 
 **Task 3:** Rate Limiter (Python)  
 **Date Submitted:** 29 November 2025

@@ -9,7 +9,7 @@ def calculate_average_word_length(text):
     words = text.split()
     total_characters = sum(len(word) for word in words)
     average_length = total_characters / len(words)
-    return round(average_length, 2)
+    return average_length
 
 def find_most_frequent_character(text):
     char_count = {}
@@ -39,5 +39,5 @@ print(f"Entered text was: {user_input}")
 print(f"Total characters: {total_characters}")
 print(f"Total words: {total_words}")
 print(f"Average word length: {average_word_length}")
-print(f"Most frequent character: {most_frequent_char} (frequency: {frequency})")
-print(f"Longest word: {longest_word}")
+# print(f"Most frequent character: {most_frequent_char} (frequency: {frequency})")
+# print(f"Longest word: {longest_word}")
