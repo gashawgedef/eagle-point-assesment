@@ -1,0 +1,41 @@
+
+import collections
+import re
+from collections import Counter
+
+
+
+
+def count_words(text):
+    words = re.findall(r'\w+',text.lower())
+    return words
+
+"Analyzing word frequency"
+def analyze_word_frequency(words):
+    word_count=collections.Counter(words)
+    return word_count
+
+
+def main():
+    # Read text from a file (change the filename to your document)
+    filename =  r"C:\Users\ggashaw\Desktop\sample_file.txt"
+
+    try:
+        with open(filename, "r", encoding="utf-8") as file:
+            text = file.read()
+            words = count_words(text)
+            word_count = analyze_word_frequency(words)
+
+            # Display the most common words and their frequencies
+            print("Word Frequency Analysis:")
+            for word, frequency in word_count.most_common():
+                print(f"{word}: {frequency} times")
+
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+    except Exception as e:
+        print(f"Error: {str(e)}")
+
+
+if __name__ == "__main__":
+    main()
