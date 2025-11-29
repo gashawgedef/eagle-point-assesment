@@ -156,7 +156,7 @@ def analyze_word_frequency(words):
 we analyze the `frequency` of each word using the collections.Counter function.
 
 
-## Final Solution for Task 1
+### 2. Final Solution for Task 1
 ### Thought Process & Decisions 
 - First  used the method  `text.split()`  and  fails on punctuation ("?" counted as a word)
 - when using above `text.split()` method, it requires many for loops which may lead to errors and difficult to read
