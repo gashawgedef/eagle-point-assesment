@@ -76,6 +76,16 @@ if __name__ == "__main__":
 
 The above reregular expression  excludes `panctuations` to be counted as a word and the number of words in a text is `11`. it solves the problem identified when using `split()` method. 
 
+**Query:** "Write a `python` fumction to find  average Word Length in text"
+### URLs and Solutions
+https://stackoverflow.com/questions/28333732/how-to-calculate-average-word-sentence-length-in-python-2-7-from-a-text-file
+https://medium.com/data-and-beyond/build-python-project-a-text-analyzer-tool-686c9647a54c
+https://www.daniweb.com/programming/software-development/threads/194704/average-word-count-in-a-text
+https://www.kaggle.com/code/iamrahulthorat/assignment-6-sample-solution
+https://www.geeksforgeeks.org/python/python-average-string-length-in-list/
+https://www.digitalocean.com/community/tutorials/average-of-list-in-python
+https://www.geeksforgeeks.org/python/python-average-string-length-in-list/
+
 
 **Task 2:** Async Data Fetcher with Retry (JavaScript) 
 **Task 3:** Rate Limiter (Python)  
