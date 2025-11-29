@@ -36,7 +36,7 @@ welcome, to ethiopia as todat good as goof df gh jk ?
 ```
 **output:**
 
-![](/images/count1.png)
+![](/images/count1.PNG)
 from the result we can understand that panctuation is counted as a word when we use `split()` method.
 
 - 2 use Regular Exprestion to get Word Count
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     main()
 ```
 ***Output:**
-![](/images/count2.png)
+![](/images/count2.PNG)
 
 The above reregular expression  excludes `panctuations` to be counted as a word and the number of words in a text is `11`. it solves the problem identified when using `split()` method. 
 
