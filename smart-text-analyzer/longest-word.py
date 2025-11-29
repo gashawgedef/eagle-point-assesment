@@ -13,7 +13,7 @@ def longest_word_in_list(word_list):
     longest = max(word_list, key=len, default="")
     return longest
 
-words = ["apple", "banana", "cherry", "banana"]
+words = ["apple", "banana", "cherry", "Telecommunications"]
 result = longest_word_in_list(words)
 print(f"The longest word is: {result}")
 

@@ -101,6 +101,64 @@ def average_word_length(text):
 ***Output:**
 ![](images/count3.PNG)
 From above code the result is `5.66666666667` not in 2 decimal places. 
+
+**Query:** "Write a `python` fumction to find  the longest word in Text or list "
+### URLs and Solutions
+
+https://stackoverflow.com/questions/16365807/finding-the-longest-words-in-a-text-file
+https://www.geeksforgeeks.org/python/python-program-to-find-the-longest-word-in-a-sentence/
+https://systechgroup.in/blog-python-program-to-find-the-longest-word/
+https://www.geeksforgeeks.org/dsa/find-the-length-of-the-longest-possible-word-chain/
+
+- sample code 
+
+```
+def longest_word_in_sentence(sentence):
+    words = sentence.split()
+    longest = max(words, key=len, default="")
+    return longest
+
+sentence = input("Enter a sentence: ")
+result = longest_word_in_sentence(sentence)
+print(f"The longest word is: {result}")
+
+def longest_word_in_list(word_list):
+    longest = max(word_list, key=len, default="")
+    return longest
+
+words = ["apple", "banana", "cherry", "Telecommunications"]
+result = longest_word_in_list(words)
+print(f"The longest word is: {result}")
+
+
+import re
+
+def longest_word_advanced(sentence):
+    words = re.findall(r'\b\w+\b', sentence.lower())
+    return max(words, key=len, default="")
+
+```
+
+**Query:** "Write a `python` fumction to find  word frequency in text or list "
+### URLs and Solutions
+
+https://thegeekycodes.com/building-a-python-word-counter-and-analyzer/
+https://stackoverflow.com/questions/35857519/efficiently-count-word-frequencies-in-python
+https://www.geeksforgeeks.org/python/find-frequency-of-each-word-in-a-string-in-python/
+
+
+```
+def analyze_word_frequency(words):
+    # Count word occurrences
+    word_count = collections.Counter(words)
+    return word_count
+```
+we analyze the `frequency` of each word using the collections.Counter function.
+
+```
+
+
+```
 **Task 2:** Async Data Fetcher with Retry (JavaScript) 
 **Task 3:** Rate Limiter (Python)  
 **Date Submitted:** 29 November 2025
