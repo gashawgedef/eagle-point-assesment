@@ -16,8 +16,27 @@ https://code.tutsplus.com/counting-word-frequency-in-a-file-using-python--cms-25
 https://www.kaggle.com/code/saidrahmatpanah/lab3-6-text-analysis
 https://advertools.readthedocs.io/en/master/advertools.word_frequency.html
 
+use `split()`
 
+```
+c=0
+with open(r'C:\Users\ggashaw\Desktop\sample_file.txt','r') as file:
+    data= file.read()
+    lines =data.split()
+    for word in lines:
+        if not word.isnumeric():
+            c+=1
 
+print(c)
+```
+input text
+
+```
+welcome, to ethiopia as todat good as goof df gh jk ?
+```
+**output:**
+
+![]("/images/count1.png")
 
 **Task 2:** Async Data Fetcher with Retry (JavaScript) 
 **Task 3:** Rate Limiter (Python)  
