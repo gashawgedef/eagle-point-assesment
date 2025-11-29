@@ -283,7 +283,9 @@ The above  code is  an existing  code I did on my project before a year   and I 
 - Any backend error on the servevr causes permanent failure.
 - if retries are added on this function no delay mechanism is implemented.
 
-## 2. Thought Process & Decisions
+## Final Solution for Task 2
+
+### 2. Thought Process & Decisions
 
 - I started tarted with basic fetch logic  from my existing code (like in getAllMembers), but  with unreliable network it will fail permanently.
 
@@ -349,7 +351,5 @@ export const getAllMembers = async (params = {}, maxRetries = 3) => {
   }
 };
 ```
-
-## Final Solution for Task 2
 
 ## Task 3: Rate Limiter (Python)  
